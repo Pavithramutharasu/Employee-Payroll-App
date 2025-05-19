@@ -1,5 +1,15 @@
 package com.bridgelaz.employeepayroll.controller;
 
-public class EmployeeController {
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
+@RestController
+@RequestMapping("/employeepay")
+public class EmployeeController {
+	
+	@GetMapping("/")
+	public String employeeDetail() {
+		return "Employee Controller Testing";
+	}
 }
