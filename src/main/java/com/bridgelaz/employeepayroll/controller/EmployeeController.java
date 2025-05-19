@@ -1,5 +1,7 @@
 package com.bridgelaz.employeepayroll.controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -10,7 +12,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.bridgelaz.employeepayroll.model.EmployeeModel;
+import com.bridgelaz.employeepayroll.dto.EmployeeDTO;
 import com.bridgelaz.employeepayroll.service.EmployeeService;
 
 @RestController
@@ -18,31 +20,30 @@ import com.bridgelaz.employeepayroll.service.EmployeeService;
 public class EmployeeController {
 	
 	@Autowired
-	private EmployeeService service;
-
+	private EmployeeService es;
 	@GetMapping("/{id}")
-	public String employeeDetail(@PathVariable long id) {
-	    return service.getEmployeeById(id);
+	public EmployeeDTO employeeDetail(@PathVariable long id) {
+		return es.getEmployeeById(id);
 	}
-
+	
 	@GetMapping("/")
-	public String getAllEmployees() {
-	    return service.getAllEmployees();
+	public List<EmployeeDTO> getAllEmployees() {
+		return es.getAllEmployees();
 	}
-
+	
 	@PostMapping("/create")
-	public String createEmployee(@RequestBody EmployeeModel emp) {
-	    return service.createEmployee(emp);
+	public EmployeeDTO createEmployee(@RequestBody EmployeeDTO emp) {
+		return es.createEmployee(emp);
 	}
-
+	
 	@PutMapping("/update/{id}")
-	public String updateEmployee(@RequestBody EmployeeModel emp) {
-	    return service.updateEmployee(emp);
+	public EmployeeDTO updateEmployee(@PathVariable long id ,@RequestBody EmployeeDTO emp) {
+		return es.updateEmployee(id, emp);
 	}
-
+	
 	@DeleteMapping("/delete/{id}")
-	public String deleteEmployee(@PathVariable long id) {
-	    return service.deleteEmployee(id);
+	public boolean deleteEmployee(@PathVariable long id) {
+		return es.deleteEmployee(id);
 	}
-
+	
 }

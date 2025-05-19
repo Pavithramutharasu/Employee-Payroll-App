@@ -16,7 +16,7 @@ public class EmployeeModel {
     }
 
     public long getId() { return id; }
-    public void setId(int id) { this.id = id; }
+    public void setId(long idCounter) { this.id = idCounter; }
 
     public String getName() { return name; }
     public void setName(String name) { this.name = name; }
